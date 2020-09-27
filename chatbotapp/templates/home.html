@@ -1,0 +1,33 @@
+	<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
+	<script type="text/javascript" src="/static/js/dev-vue.js"></script>
+
+{% block js %}
+  <script type="text/javascript" src="/static/js/script.js"></script>
+{% endblock %}
+
+{% block content %}
+  <div id="app" class="container top-padding">
+  	<div class="row">
+  		<div class="col-md-8">
+  			<div class="card col-md-8" v-for="message in messages"
+			   v-bind:class="{ 'user-message': message.user,  'chat-message': message.chat_bot, 'col-md-offset-1': message.chat_bot}">
+	  			<div class="card-body">
+	  				[[message.text]] 
+	  			</div>
+	  		</div>
+  		</div>
+	  		
+  	</div>
+  	<div id="text-box" class="row top-padding">
+  		<div class="col-md-8">
+  			<textarea class="form-control" v-bind:placeholder="placeholder" v-model="input" 
+			  v-bind:class="{ 'border-danger': send_blank}" v-on:change="check_content"></textarea>
+  			<i class="fas fa-arrow-circle-right send-btn" v-on:click="add_message"></i>
+  		</div>
+  	</div>
+  </div>
+{% endblock %}
+
